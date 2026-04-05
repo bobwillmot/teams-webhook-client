@@ -25,6 +25,7 @@ Features:
 - `teams_webhook.py`: reusable client class.
 - `example.py`: simple example usage.
 - `pyproject.toml`: packaging metadata and `teams-post` entry point.
+- `docs/README.md`: documentation index and local naming conventions.
 - `docs/agent-transcripts/`: dated request transcripts and implementation history.
 - `docs/adr/`: architecture and design decisions.
 
@@ -164,6 +165,7 @@ Smoke tests:
 
 Project tracking:
 
+- See `docs/README.md` for the local documentation layout and naming conventions.
 - Save dated agent request transcripts and implementation history in `docs/agent-transcripts/`.
 - Record durable technical decisions as ADRs in `docs/adr/`.
 
