@@ -25,8 +25,8 @@ Features:
 - `teams_webhook.py`: reusable client class.
 - `example.py`: simple example usage.
 - `pyproject.toml`: packaging metadata and `teams-post` entry point.
-- `chat-transcript.md`: saved project conversation summary.
-- `design-decisions.md`: saved implementation decisions and tradeoffs.
+- `docs/agent-transcripts/`: dated request transcripts and implementation history.
+- `docs/adr/`: architecture and design decisions.
 
 ## Make Targets
 
@@ -161,6 +161,11 @@ Structured logging:
 Smoke tests:
 
 - Run `make test` to verify the client builds payloads and loads JSON input correctly.
+
+Project tracking:
+
+- Save dated agent request transcripts and implementation history in `docs/agent-transcripts/`.
+- Record durable technical decisions as ADRs in `docs/adr/`.
 
 GitHub Actions:
 
