@@ -2,6 +2,8 @@
 
 This folder holds repository documentation that is more durable or more detailed than the project root `README.md`.
 
+Use this file as the entry point for the docs layout and naming rules.
+
 ## Layout
 
 - `adr/`: architecture decision records for durable technical and workflow choices.

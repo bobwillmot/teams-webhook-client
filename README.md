@@ -165,13 +165,13 @@ Smoke tests:
 
 Project tracking:
 
-- See `docs/README.md` for the local documentation layout and naming conventions.
-- Save dated agent request transcripts and implementation history in `docs/agent-transcripts/`.
-- Record durable technical decisions as ADRs in `docs/adr/`.
+- See `docs/README.md` for the documentation layout and naming rules.
+- Store dated request history in `docs/agent-transcripts/`.
+- Store durable technical decisions in `docs/adr/`.
 
 GitHub Actions:
 
 - The sample workflow in `.github/workflows/post-to-teams.yml` installs the project with `make install-requests`, runs `make test`, and then posts a success or failure message.
 - Set a repository secret named `TEAMS_WEBHOOK_URL` before enabling it.
 
-Note: this folder is not currently inside a Git repository, so the workflow keeps a generic `main` plus `pull_request` trigger instead of being tailored to repository-specific branch names.
+Note: the sample workflow keeps generic `main` plus `pull_request` triggers. Adjust them if your repository uses different branch or event conventions.
