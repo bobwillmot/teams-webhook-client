@@ -1,0 +1,75 @@
+name: Post To Teams
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install project with requests support
+        run: make install-requests
+
+      - name: Run smoke tests
+        run: make test
+
+  notify:
+    needs: ci
+    if: ${{ always() }}
+    runs-on: ubuntu-latest
+    env:
+      TEAMS_WEBHOOK_URL: ${{ secrets.TEAMS_WEBHOOK_URL }}
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install project with requests support
+        run: make install-requests
+
+      - name: Check whether webhook secret is configured
+        id: webhook
+        run: |
+          if [ -n "$TEAMS_WEBHOOK_URL" ]; then
+            echo "configured=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "configured=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Post success message to Teams
+        if: ${{ steps.webhook.outputs.configured == 'true' && needs.ci.result == 'success' }}
+        run: |
+          teams-post "GitHub Actions run succeeded for ${{ github.repository }} on ${{ github.ref_name }}" \
+            --style success \
+            --title "CI Success" \
+            --transport requests \
+            --log-format json
+
+      - name: Post failure message to Teams
+        if: ${{ steps.webhook.outputs.configured == 'true' && needs.ci.result != 'success' }}
+        run: |
+          teams-post "GitHub Actions run failed for ${{ github.repository }} on ${{ github.ref_name }}" \
+            --style error \
+            --title "CI Failure" \
+            --transport requests \
+            --log-format json
+
+      - name: Report skipped notification
+        if: ${{ steps.webhook.outputs.configured != 'true' }}
+        run: echo "Skipping Teams notification because TEAMS_WEBHOOK_URL is not configured."

@@ -1,0 +1,43 @@
+# Chat Transcript
+
+Date: 2026-04-04
+
+This file stores a concise transcript of the work requested for this folder.
+
+## Conversation Summary
+
+User: Asked what the Microsoft Teams CLI interface is.
+
+Assistant: Clarified that Teams development tooling uses Teams Toolkit or newer Microsoft 365 tooling, while administration usually uses Teams PowerShell.
+
+User: Asked for a command-line chat interface so programs can post to Teams.
+
+Assistant: Recommended either channel webhooks for simple posting or Microsoft Graph for authenticated chat and channel messaging.
+
+User: Asked to control this via a Python program.
+
+Assistant: Provided a Python webhook example and then a reusable `TeamsWebhookClient` class.
+
+User: Asked to save the code under `~/src/`.
+
+Assistant: Created `~/src/teams-webhook-client` and saved the Python client, example script, and README.
+
+User: Asked to add a CLI wrapper, `requests` support, and retry/backoff.
+
+Assistant: Added all three to the client and updated the README.
+
+User: Asked to add packaging, JSON input support, structured CI logging, and to save chat transcripts and design decisions in this folder.
+
+Assistant: Added package metadata for an installable `teams-post` command, raw JSON payload input from file or stdin, structured CLI logging, and this transcript/design notes pair.
+
+User: Asked to set up a Makefile and then asked to add all remaining suggested improvements.
+
+Assistant: Added a Makefile, `.env` support for Make targets, sample `payload.json` and `card.json` files, and smoke tests runnable through `make test`.
+
+User: Asked to add the remaining project hygiene suggestions.
+
+Assistant: Added `.gitignore`, a `make doctor` environment check, and a sample GitHub Actions workflow that posts to Teams using a repository secret.
+
+User: Asked to apply the remaining three suggested follow-ups.
+
+Assistant: Added a local `.env` file with a placeholder webhook value, updated the GitHub Actions workflow to run the project's `make install-requests` and `make test` steps before posting notifications, and expanded the smoke tests to cover retry behavior and CLI logging.

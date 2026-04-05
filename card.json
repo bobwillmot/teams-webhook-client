@@ -1,0 +1,32 @@
+{
+  "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+  "type": "AdaptiveCard",
+  "version": "1.4",
+  "body": [
+    {
+      "type": "TextBlock",
+      "text": "Build summary",
+      "weight": "Bolder",
+      "size": "Medium",
+      "wrap": true
+    },
+    {
+      "type": "TextBlock",
+      "text": "This card can be sent with make post-card or teams-post --payload-type adaptive-card.",
+      "wrap": true
+    },
+    {
+      "type": "FactSet",
+      "facts": [
+        {
+          "title": "Service",
+          "value": "payments-api"
+        },
+        {
+          "title": "Status",
+          "value": "Healthy"
+        }
+      ]
+    }
+  ]
+}
